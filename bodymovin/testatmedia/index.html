@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html style="width: 100%;height: 100%">
+<head>
+     <script src="../lottie.min.js"></script>
+</head>
+<body style="background-color:#ccc; margin: 0px;height: 100%; font-family: sans-serif;font-size: 10px">
+
+<div style="width:100%;height:100%;background-color:#333;" id="bodymovin"></div>
+
+<script>
+
+    // var animData = {
+    //     wrapper: document.getElementById('bodymovin'),
+    //     animType: 'html',
+    //     loop: true,
+    //     prerender: true,
+    //     autoplay: true,
+    //     path: 'data.json'
+
+    // };
+    // var anim = bodymovin.loadAnimation(animData);
+    var anim = lottie.loadAnimation({
+      container: document.getElementById('bodymovin'), // the dom element that will contain the animation
+      renderer: 'svg',
+      loop: false,
+      autoplay: false,
+      path: 'atmedia2018.json' // the path to the animation json
+    });
+   
+    anim.play();
+</script>
+</body>
+</html>

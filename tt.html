@@ -1,0 +1,65 @@
+<!DOCTYPE HTML>
+<html>
+<body>
+
+<div id="videobox">
+   <video
+    id="liveVideo" 
+    src="m1.mp4" 
+    preload="auto" 
+    controls="controls" 
+    webkit-playsinline="true" 
+    playsinline="true" 
+    x-webkit-airplay="allow" 
+    x5-video-player-type="h5" 
+    x5-video-player-fullscreen="true" 
+    x5-video-orientation="portraint" 
+    style="object-fit:fill;width:300px;height:500px;background:black;">
+    </video>
+</div>
+
+<canvas id="liveCanvas"></canvas>
+
+<div class="playBtn" style="font-size:30px;" onclick="func()">play</div>
+
+
+<style>
+#liveVideo{display: none;}
+#canvas{background: black;width:300px;height:500px;}
+</style>
+
+<script>
+//获取video
+    var oLiveVideo=document.getElementById("liveVideo");
+    //获取canvas画布
+    var oLiveCanvas=document.getElementById("liveCanvas");
+    //设置画布
+    var oLiveCanvas2D=oLiveCanvas.getContext('2d');
+
+var oPlayBtn = document.getElementById("playBtn");
+
+//播放按钮呗点击
+    function func() {
+        oLiveVideo.play();
+    }
+
+    //设置setinterval定时器
+    var bLiveVideoTimer=null;
+    //监听播放
+    oLiveVideo.addEventListener('play',function() {
+        bLiveVideoTimer=setInterval(function() {
+            oLiveCanvas2D.drawImage(oLiveVideo,0,0,640,320);
+        },20);
+    },false);
+    //监听暂停
+    oLiveVideo.addEventListener('pause',function() {
+        clearInterval(bLiveVideoTimer);
+    },false);
+    //监听结束
+    oLiveVideo.addEventListener('ended',function() {
+        clearInterval(bLiveVideoTimer);
+    },false);
+</script>
+
+</body>
+</html>
